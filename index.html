@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+        max-width: 640px;
+        font-size: 12px;
+        margin: 0 auto;
+    }
+
+    .contain {
+        /* max-width: 500px;
+        height:100%;
+        background:url(img/app-showcase.png) no-repeat;
+        background-size: 100% 100%;
+        border: 1px solid #000;*/
+    }
+
+    .swiper-container {
+        max-width: 360px;
+        height: 618px;
+        border: 1px solid #000;
+    }
+
+    .swiper-wrapper {
+        position: relative;
+    }
+
+    .box {
+        overflow: hidden;
+        position: absolute;
+        /*position: fixed;*/
+        width: 100%;
+        height: 618px;
+        background: url(img/bg1.jpg) no-repeat;
+        background-size: 100% 100%;
+    }
+
+
+    .box img.bg {
+        position: absolute;
+        width: 100%;
+    }
+
+    .box .toleaf {
+        width: 100%;
+        height: 60px;
+        position: relative;
+        top: -124px;
+        left: 126px;
+    }
+    /*摇动的叶子*/
+
+    .box .toleaf img {
+        position: absolute;
+        top: 100px;
+        width: 64px;
+        animation: move 5s ease 0s infinite;
+        transform-origin: 100% 0;
+    }
+
+    @-webkit-keyframes move {
+        0% {
+            transform: rotateZ(-10deg);
+        }
+        50% {
+            transform: rotateZ(0deg);
+        }
+        100% {
+            transform: rotateZ(-10deg);
+        }
+    }
+    /*树叶飘动的效果*/
+
+    .box .float {
+        position: relative;
+        top: -164px;
+    }
+    /*飘动的第一个叶子*/
+
+    .box .float .leaf1 {
+        width: 60px;
+        position: absolute;
+        top: 20px;
+        top: 100px;
+        left: 250px;
+        animation: piaodong 5s ease 0s infinite;
+    }
+
+    @-webkit-keyframes piaodong {
+        0% {
+            transform: translateY(0px) translateX(0px) rotateZ(0deg);
+        }
+        100% {
+            transform: translateY(400px) translateX(-400px) rotateZ(600deg);
+        }
+    }
+    /*飘动的第二个叶子*/
+
+    .box .float .leaf2 {
+        width: 60px;
+        position: absolute;
+        top: 150px;
+        left: 340px;
+        animation: two 5s ease 1s infinite;
+    }
+
+    @-webkit-keyframes two {
+        0% {
+            transform: translateY(0px) translateX(0px) rotateZ(0deg);
+        }
+        100% {
+            transform: translateY(400px) translateX(-400px) rotateZ(500deg);
+        }
+    }
+
+    .box .btn {
+        float: right;
+        position: relative;
+        top: -50px;
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
+        background: url(img/music.png) no-repeat;
+        background-size: 36px 72px;
+        animation: zhuan 5s linear 0s infinite normal;
+        transform-origin: 50% 50%;
+    }
+
+    @-webkit-keyframes zhuan {
+        0% {
+            transform: rotateZ(0deg);
+        }
+        100% {
+            transform: rotateZ(720deg);
+        }
+    }
+
+    .swiper-slide {
+        /*position: absolute;*/
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        overflow: hidden;
+    }
+
+    .swiper-slide.swiper-one img:nth-child(1) {
+        width: 100%;
+    }
+
+    .swiper-slide.swiper-one img:nth-child(2) {
+        position: absolute;
+        top: 10px;
+        left: 0px;
+        width: 100%;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        position: absolute;
+        top: 10px;
+        left: 0px;
+        width: 100%;
+    }
+
+    .weibo img {
+        margin-top: 50px;
+    }
+    /*这是最后一页微博书评的样式*/
+
+    .txtbox {
+        width: 90%;
+        height: 100%;
+        margin: 150px auto;
+        background: #F9F5EF;
+        padding: 0px 6px;
+        overflow: auto;
+    }
+
+     ::-webkit-scrollbar {
+        display: none;
+    }
+
+    .txtbox .work-desc {
+        width: 100%;
+        height: 2.5em;
+        line-height: 2.5em;
+        border-bottom: 1px solid #ccc;
+        font-weight: bold;
+        margin-right: 20px;
+    }
+
+    .txtbox .work-text {
+        font-size: 12px;
+        padding: 4px 0px;
+        line-height: 150%;
+        color: #323232;
+        text-indent: 2em;
+    }
+
+    .txtbox .work-voteBtnBox {
+        width: 100%;
+        height: 3em;
+        overflow: auto;
+        background: #F4EDDC;
+        border: 1px solid #ddd;
+        box-shadow: 0px 0px 0.5px 0.5px #ddd;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .swiper-pagination{
+        color:#ddd;
+    }
+    .swiper-pagination-bullet-active{
+        background:#fff;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <div class="swiper-container">
+            <!-- 背景效果 -->
+            <div class="box">
+                <!-- 飘动的叶子 -->
+                <div class="float">
+                    <img src="img/leaf_1.png" alt="飘动的第一个叶子" class="leaf1">
+                    <img src="img/leaf_2.png" alt="飘动的第二个叶子" class="leaf2">
+                </div>
+                <!-- 背景叶子图 -->
+                <img src="img/topLeaf.png" alt="背景叶子" class="bg">
+                <!-- 摇动的叶子效果 -->
+                <div class="toleaf toleaf1">
+                    <img src="img/topLeaf_1.png" alt="摇动的叶子" class="move">
+                </div>
+                <!-- 音乐播放图片 -->
+                <div class="btn">
+                </div>
+            </div>
+            <div class="swiper-wrapper">
+                <!-- 第一个滑动的页面 -->
+                <div class="swiper-slide swiper-active">
+                    <img class="ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s" swiper-animate-delay="0s" src="img/1.png" />
+                    <img class="ani" swiper-animate-effect="zoomIn" swiper-animate-duration="2s" swiper-animate-delay="1s" src="img/2.png" />
+                </div>
+                <!-- 第二个滑动的页面 -->
+                <div class="swiper-slide swiper-two">
+                    <img class="ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0s" src="img/t2.png" />
+                    <img class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="2.2s" swiper-animate-delay="0s" src="img/211.png" />
+                    <img class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="2.2s" swiper-animate-delay="0.13s" src="img/212.png" />
+                    <img class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="2.2s" swiper-animate-delay="0.26s" src="img/213.png" />
+                    <img class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="2.2s" swiper-animate-delay="0.39s" src="img/22.png" />
+                </div>
+                <!-- 第三个滑动的页面 -->
+                <div class="swiper-slide">
+                    <img class="ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="2s" swiper-animate-delay="0s" src="img/t3.png" />
+                    <img class="ani" swiper-animate-effect="slideInUp" swiper-animate-duration="2s" swiper-animate-delay="1s" src="img/31.png" />
+                </div>
+                <!-- 第四个滑动的页面 -->
+                <div class="swiper-slide">
+                    <img class="ani" swiper-animate-effect=" lightSpeedIn" swiper-animate-duration="1s" swiper-animate-delay="0s" src="img/t4.png" />
+                    <img class="ani" swiper-animate-effect="flipInX" swiper-animate-duration="1.4s" swiper-animate-delay="1s" src="img/41.png" />
+                </div>
+                <!-- 微博书评页面 -->
+                <div class="swiper-slide weibo">
+                    <div id="txtbox" class="txtbox">
+                        <div v-for="item in txtlist">
+                            <img class="ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0s" src="img/55.png" />
+                            <div class="work-descBox">
+                                <div class="work-desc">{{item.title}}</div>
+                            </div>
+                            <div class="work-textBox">
+                                <div class="work-text">{{item.text}}</div>
+                            </div>
+                            <div class="work-nameBox"></div>
+                            <div class="work-voteBtnBox">
+                                <div class="work-name"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <!-- BGM DOM 音频 -->
+        <audio src="http://jiangsu.sinaimg.cn/zt/s/yxqxwspds/mobile/bgmcut.mp3" autoplay="autoplay" loop style="display:none;width:0px;height:0px"></audio>
+    </div>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/swiper.animate.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script>
+    
+   window.onload = function(){
+     //这是swiper的滑动事件
+    var mySwiper = new Swiper('.swiper-container', {
+        direction: 'vertical',
+        // autoplay: 5000,
+        mousewheelControl: true,
+        initialSlide: 0,
+        // loop: true,
+        lazyLoading : true,
+
+        // 如果需要分页器
+        pagination: '.swiper-pagination',
+        onInit: function(swiper) { //Swiper2.x的初始化是onFirstInit
+            swiperAnimateCache(swiper); //隐藏动画元素 
+            swiperAnimate(swiper); //初始化完成开始动画
+        },
+        onSlideChangeEnd: Swipercallback
+    });
+//更改每一个slide的背景图片
+
+    var bgList = [
+        "img/bg1.jpg",
+        "img/2.jpg",
+        "img/3.jpg",
+        "img/4.jpg",
+        "img/5.jpg"
+       
+    ];
+    var img = [];
+    for (var i = 0; i<bgList.length; i++) {
+        var img = new Image();
+        img.src = bgList[i];
+        console.log(img)
+    }
+
+    // SlideChangeEndCallback调用回调函数更改背景图
+    function Swipercallback(swiper) {
+            var act = swiper.activeIndex;
+               // if(act == 6){
+               //      act = 1;
+               // }
+            setTimeout(function() {
+                $(".box").css("background", 'url("' + bgList[act ] + '")');
+                $(".box").css("background-size", "100% 100%");
+                console.log(act);
+                console.log(bgList[act - 1]);
+            }, 1200);
+         swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+    }
+
+    // 这是微博书评的数据
+    var vm = new Vue({
+        el: "#txtbox",
+        data: {
+            txtlist: [{
+                title: "小王子",
+                text: "如果你存在于一颗行星，那么我看着这满天的繁星，就觉得他们都笑了起来”，小王子对于我是一场爱的启蒙，有关于驯养，跋涉，以及星辰斑斓的黄昏。总有一天我们会离开身边的玫瑰和小火山，走向更大的世界，而当终于我们成长，别忘记带着灵魂，回到故乡。"
+            }, {
+                title: "长恨歌",
+                text: "长恨歌未央，世人独彷徨。一本沾染岁月尘土、满溢旧时气息的小说，娓娓道来，一场繁华旧梦。这梦诉说着王琦瑶从素净淡雅到杳无声息消失于世间的经历。蝴蝶翩跹，夹竹桃开落，置身旧上海的繁华魅影，孤独的身影依然无处可遁，只因她，消逝的青春，飞逝了的时间。与时光有关的东西，总是直指悲剧的东西。"
+            }, {
+                title: "平凡的世界",
+                text: "其实这个世界里的人大多是平凡的，但就算是平凡的梦想也是需要信念与勇气来实现的。或许对于这个庞大喧嚣不堪的世界我们是平凡的，但我们要在自己的小世界里做一个努力乐观向上的人。这本书带给我最大的力量就是，每个人与生俱来的世界不一样，越是平凡的世界，就越有理由去改变自己的世界。"
+            }, {
+                title: "解忧杂货店",
+                text: "东野圭吾的新书，虽然不是他最擅长的犯罪推理小说，但却用他最擅长的构思带给大家一个感人而又神奇的故事。世界很大，很可能我们都会有丝丝缕缕的联系而不自知，有时我们对别人温暖一点，某一个不相干的时间点我们恰会感受到这个世界的温度。"
+            }, {
+                title: "小王子",
+                text: "骄傲的玫瑰花还在寂寞的星球上等着逝去的爱重来，而勇敢的小狐狸已经决定不爱我的我不爱了。我们总是难以在爱的独木桥上保持平衡。爱我们的太轻，而我们爱的又太重。生命的轻与重，美与痛就这么如水般流过，身体老去逝去，回忆永远年轻。"
+            }]
+        }
+    });
+   }
+    </script>
+</body>
+
+</html>
