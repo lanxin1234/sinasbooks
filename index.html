@@ -131,7 +131,23 @@
             transform: translateY(400px) translateX(-400px) rotateZ(500deg);
         }
     }
+    /*飘动的第三个叶子*/
+     .box .float .leaf3{
+        width: 60px;
+        position: absolute;
+        top: 300px;
+        left: 400px;
+        animation: three 5s ease 3s infinite;
+    }
 
+    @-webkit-keyframes three {
+        0% {
+            transform: translateY(0px) translateX(0px) rotateZ(0deg);
+        }
+        100% {
+            transform: translateY(500px) translateX(-300px) rotateZ(500deg);
+        }
+    }
     .box .btn {
         float: right;
         position: relative;
@@ -140,9 +156,11 @@
         height: 36px;
         margin-right: 10px;
         background: url(img/music.png) no-repeat;
+
         background-size: 36px 72px;
         animation: zhuan 5s linear 0s infinite normal;
         transform-origin: 50% 50%;
+        z-index:666666;
     }
 
     @-webkit-keyframes zhuan {
@@ -188,8 +206,8 @@
 
     .txtbox {
         width: 90%;
-        height: 100%;
-        margin: 150px auto;
+        height: 57%;
+        margin: 172px auto;
         background: #F9F5EF;
         padding: 0px 6px;
         overflow: auto;
@@ -232,6 +250,20 @@
     .swiper-pagination-bullet-active{
         background:#fff;
     }
+    .btn.mut{
+        float: right;
+        position: relative;
+        top: -50px;
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
+        background: url(img/music.png) no-repeat;
+        background-size: 36px 72px;
+           background-position: 0px -36px;
+        animation: zhuan 5s linear 0s infinite normal;
+        transform-origin: 50% 50%;
+        z-index:666666;  
+    }
     </style>
 </head>
 
@@ -244,6 +276,7 @@
                 <div class="float">
                     <img src="img/leaf_1.png" alt="飘动的第一个叶子" class="leaf1">
                     <img src="img/leaf_2.png" alt="飘动的第二个叶子" class="leaf2">
+                    <img src="img/leaf_3.png" alt="飘动的第三个叶子" class="leaf3">
                 </div>
                 <!-- 背景叶子图 -->
                 <img src="img/topLeaf.png" alt="背景叶子" class="bg">
@@ -301,7 +334,7 @@
             <div class="swiper-pagination"></div>
         </div>
         <!-- BGM DOM 音频 -->
-        <audio src="http://jiangsu.sinaimg.cn/zt/s/yxqxwspds/mobile/bgmcut.mp3" autoplay="autoplay" loop style="display:none;width:0px;height:0px"></audio>
+        <audio id="bgm" src="http://jiangsu.sinaimg.cn/zt/s/yxqxwspds/mobile/bgmcut.mp3" style="display:none;width:0px;height:0px" autoplay></audio>
     </div>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/swiper.min.js"></script>
@@ -369,19 +402,38 @@
             }, {
                 title: "长恨歌",
                 text: "长恨歌未央，世人独彷徨。一本沾染岁月尘土、满溢旧时气息的小说，娓娓道来，一场繁华旧梦。这梦诉说着王琦瑶从素净淡雅到杳无声息消失于世间的经历。蝴蝶翩跹，夹竹桃开落，置身旧上海的繁华魅影，孤独的身影依然无处可遁，只因她，消逝的青春，飞逝了的时间。与时光有关的东西，总是直指悲剧的东西。"
-            }, {
-                title: "平凡的世界",
-                text: "其实这个世界里的人大多是平凡的，但就算是平凡的梦想也是需要信念与勇气来实现的。或许对于这个庞大喧嚣不堪的世界我们是平凡的，但我们要在自己的小世界里做一个努力乐观向上的人。这本书带给我最大的力量就是，每个人与生俱来的世界不一样，越是平凡的世界，就越有理由去改变自己的世界。"
-            }, {
-                title: "解忧杂货店",
-                text: "东野圭吾的新书，虽然不是他最擅长的犯罪推理小说，但却用他最擅长的构思带给大家一个感人而又神奇的故事。世界很大，很可能我们都会有丝丝缕缕的联系而不自知，有时我们对别人温暖一点，某一个不相干的时间点我们恰会感受到这个世界的温度。"
-            }, {
-                title: "小王子",
-                text: "骄傲的玫瑰花还在寂寞的星球上等着逝去的爱重来，而勇敢的小狐狸已经决定不爱我的我不爱了。我们总是难以在爱的独木桥上保持平衡。爱我们的太轻，而我们爱的又太重。生命的轻与重，美与痛就这么如水般流过，身体老去逝去，回忆永远年轻。"
             }]
         }
     });
    }
+   //更改播放音乐的按钮
+   var btn = $(".box .btn");
+   console.log(btn)
+   btn.onclick = function(){
+   console.log(11);
+   }
+
+
+   //抄写
+   var firstTouch = true;
+   $("body").bind("touchstart",function(e){
+    if(firstTouch){
+        firstTouch = false;
+        document.getElementById("bgm").play
+    }else{
+        return;
+    }
+   });
+   $(".btn").bind("touchstart",function(e){
+    var dom  = document.getElementById("bgm");
+    if(dom.paused){
+        dom.play();
+        $(".btn").removeClass("mut");
+    }else{
+        dom.pause();
+        $(".btn").addClass('mut');
+    }
+   })
     </script>
 </body>
 
